@@ -1,0 +1,17 @@
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Database
+*.sqlite3
+*.db
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing
+.pytest_cache/
