@@ -9,17 +9,11 @@ An enterprise-grade, highly optimized backend for a Finance Dashboard system. Bu
 * **Authentication:** OAuth2 with JWT (JSON Web Tokens) & Passlib (Bcrypt)
 * **Testing:** Pytest
 
-### Design Decisions & Trade-offs
+### Design Decisions
 1. **Layered Architecture:** The codebase is strictly divided into Models, Schemas, CRUD operations, Services, and Routers. This ensures separation of concerns and extreme maintainability.
 2. **Database Engine Offloading:** Instead of fetching thousands of records and calculating dashboard summaries in Python RAM, the `GET /api/v1/dashboard/summary` endpoint pushes the heavy lifting (`GROUP BY`, `SUM()`) down to the SQLite C-engine. This guarantees sub-millisecond aggregation times.
 3. **Backend-For-Frontend (BFF) Pattern:** The dashboard endpoint returns aggregated totals (Income, Expense, Net Balance) alongside category-wise breakdowns in a single API call, preventing network latency caused by multiple round-trips from the frontend.
 4. **Zero-IDOR Vulnerability:** The transaction creation logic relies strictly on the `user_id` extracted from the decoded JWT token, making it impossible for malicious users to inject records into other accounts.
-
-## 🔐 Role-Based Access Control (RBAC)
-The system defines three distinct roles, enforced via highly decoupled dependency injection (`RoleChecker`):
-* **Admin:** Full CRUD access. Can create users, add transactions, delete records, and view dashboard summaries.
-* **Analyst:** Read-only access to records and full access to aggregated dashboard insights. Blocked from creating or deleting records.
-* **Viewer:** Strictly read-only access to specific endpoints. Blocked from dashboard aggregations and record creation.
 
 ## 💻 Quick Setup (Codespaces / Local Environment)
 
@@ -32,7 +26,7 @@ pip install -r requirements.txt
 
 **2. Start the API Server**
 ```bash
-    uvicorn app.main:app --reload
+uvicorn app.main:app --reload
 ```
 
 *(If evaluating within **GitHub Codespaces**, navigate to the **"Ports"** tab next to the Terminal, locate Port 8000, and click the "Open in Browser" globe icon.)*
@@ -69,7 +63,7 @@ The project includes a robust, automated test suite that validates System Health
 
 To run the automated tests, simply execute:
 ```bash
-    pytest -v
+pytest -v
 ```
 
 *Note: The test suite dynamically generates UUIDs for test emails to ensure a 0% failure rate across consecutive local test runs.*
