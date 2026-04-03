@@ -28,10 +28,12 @@ Since the project uses SQLite, there are no complex database containers to set u
 **1. Install Dependencies**
 ```bash
 pip install -r requirements.txt
+```
 
 **2. Start the API Server**
-
+```bash
     uvicorn app.main:app --reload
+```
 
 *(If evaluating within **GitHub Codespaces**, navigate to the **"Ports"** tab next to the Terminal, locate Port 8000, and click the "Open in Browser" globe icon.)*
 
@@ -66,7 +68,8 @@ As per the instructions, here are the key assumptions and engineering tradeoffs 
 The project includes a robust, automated test suite that validates System Health, Admin CRUD flows, Analyst restrictions, and Data aggregations without requiring manual Swagger UI interaction.
 
 To run the automated tests, simply execute:
-
+```bash
     pytest -v
+```
 
 *Note: The test suite dynamically generates UUIDs for test emails to ensure a 0% failure rate across consecutive local test runs.*
