@@ -32,6 +32,7 @@ uvicorn app.main:app --reload
 *(If evaluating within **GitHub Codespaces**, navigate to the **"Ports"** tab next to the Terminal, locate Port 8000, and click the "Open in Browser" globe icon.)*
 
 **3. Access the Interactive API Documentation**
+
 Navigate to `/docs` in your browser to access the Swagger UI. You can register an `Admin` user and use the "Authorize" button to test the secured endpoints.
 
 ## Role-Based Access Control (RBAC) & API Explanation
